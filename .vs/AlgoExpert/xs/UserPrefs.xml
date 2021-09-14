@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{8C087007-3542-4212-864D-F4ECFB09AF5D}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AlgoExpert/Easy.cs">
+    <Files>
+      <File FileName="AlgoExpert/Program.cs" Line="1" Column="1" />
+      <File FileName="AlgoExpert/mono_crash.11a6748113.0.json" />
+      <File FileName="AlgoExpert/Easy.cs" Line="173" Column="35" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AlgoExpert" expanded="True">
+            <Node name="AlgoExpert" expanded="True">
+              <Node name="Easy.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.AlgoExpert FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
