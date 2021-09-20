@@ -184,14 +184,6 @@ namespace AlgoExpert
         }
         #endregion
 
-        #region Nth Fib
-        public static int GetNthFib(int n)
-        {
-            // Write your code here.
-            return -1;
-        }
-        #endregion
-
         #region Branch Sums
         //// recursion
         /// time complexity is O(n), since you traverse through all the nodes in the tree
@@ -262,6 +254,169 @@ namespace AlgoExpert
             }
 
             return sumList;
+        }
+        #endregion
+
+        #region Three Largest Number
+        /// time: O(n) bc we walk through the array once, and other operations are constant
+        /// space: storage is constant, which is just the result array, and not dependent on in input size n
+        public static int[] FindThreeLargestNumbers(int[] array)
+        {
+            int[] results = new int[] { int.MinValue, int.MinValue, int.MinValue };
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > results[2])
+                {
+                    shiftAndUpdate(ref results, array[i], 2);
+                }
+                else if (array[i] > results[1])
+                {
+                    shiftAndUpdate(ref results, array[i], 1);
+                }
+                else if (array[i] > results[0])
+                {
+                    shiftAndUpdate(ref results, array[i], 0);
+                }
+            }
+            // Write your code here.
+            return results;
+        }
+
+        public static void shiftAndUpdate(ref int[] array, int number, int index)
+        {
+            for (int i = 0; i <= index; i++)
+            {
+                if (i == index)
+                {
+                    array[i] = number;
+                } else
+                {
+                    array[i] = array[i + 1];
+                }
+            }
+        }
+        #endregion
+
+        #region Binary search
+        /// time: O(log n)
+        /// space: O(1)
+        public static int BinarySearch(int[] array, int target)
+        {
+            int lo = 0;
+            int hi = array.Length - 1;
+            while (lo <= hi)
+            {
+                int mi = lo + (hi - lo) / 2;
+                if (array[mi] == target) { return mi; }
+                else if (array[mi] > target)
+                {
+                    hi = mi - 1;
+                }
+                else if (array[mi] < target)
+                {
+                    lo = mi + 1;
+                }
+            }
+            return -1;
+        }
+        #endregion
+
+        #region fibonbacci
+        public static int GetNthFib(int n)
+        {
+            if(n <= 2) return n - 1;
+
+            int[] result = new int[] { 0, 1 };
+            int counter = 2;
+
+            while (counter < n)
+            {
+                int nextFib = result[0] + result[1];
+                result[0] = result[1];
+                result[1] = nextFib;
+                counter++;
+            }
+
+            return result[1];
+        }
+        #endregion
+
+        #region Tournament Winner
+        public string TournamentWinner(List<List<string>> competitions, List<int> results)
+        {
+            Dictionary<string, int> teamPoints = new Dictionary<string, int>();
+            int currentMaxPoint =int.MinValue;
+            string currentMaxTeam ="";
+
+            for(int i = 0; i < results.Count; i++)
+            {
+                if (results[i] == 1) {
+                    assignPoint(teamPoints, competitions[i][0], ref currentMaxPoint, ref currentMaxTeam);
+                }
+                else if (results[i] == 0) {
+                    assignPoint(teamPoints, competitions[i][1], ref currentMaxPoint, ref currentMaxTeam);
+                }
+            }
+            return currentMaxTeam;
+        }
+
+        public void assignPoint(Dictionary<string, int> teamPoints, string team, ref int currentMaxPoint, ref string currentMaxTeam)
+        {
+            if (teamPoints.ContainsKey(team))
+            {
+                teamPoints[team] += 3;
+            } else
+            {
+                teamPoints.Add(team, 3);
+            }
+
+            if (teamPoints[team] > currentMaxPoint)
+            {
+                currentMaxTeam = team;
+            }
+        }
+        #endregion
+
+        #region remove duplicate from linked list
+        // This is an input class. Do not edit.
+        public class LinkedList
+        {
+            public int value;
+            public LinkedList next;
+
+            public LinkedList(int value)
+            {
+                this.value = value;
+                this.next = null;
+            }
+        }
+
+        public LinkedList RemoveDuplicatesFromLinkedList(LinkedList linkedList)
+        {
+            if (linkedList == null) return linkedList;
+
+            LinkedList current = linkedList.next;
+            LinkedList previous = linkedList;
+            LinkedList head = linkedList;
+
+            while (current != null)
+            {
+                if (previous.value == current.value)
+                {
+                    current = current.next;
+                } else
+                {
+                    previous.next = current;
+                    previous = current;
+                    current = current.next;
+                }
+            }
+
+            if (previous.next != current)
+            {
+                previous.next = current;
+            }
+            return head;
         }
         #endregion
     }
